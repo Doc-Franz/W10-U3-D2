@@ -10,7 +10,7 @@ const CommentArea = (props) => {
   const [reviews, setReviews] = useState([]);
 
   const fetchComments = () => {
-    fetch("https://striveschool-api.herokuapp.com/api/comments/" + props.selected, {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + props.asin, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzQ4N2RlODA2ZmM4YzAwMTU2Yjg3MzEiLCJpYXQiOjE3MzI4MDQwNzMsImV4cCI6MTczNDAxMzY3M30.1H79z_u2sVpY2cGcDlfI_8HzekltCZVso28SH131mI8"
@@ -43,7 +43,7 @@ const CommentArea = (props) => {
 
   useEffect(() => {
     fetchComments();
-  }, []);
+  }, [props.asin]);
 
   return (
     <>

@@ -7,33 +7,33 @@ const BookList = (props) => {
   // state = {
   //   inputText: "",
   //   formSubmitted: false,
-  //   selected: ""
+  //   asin: ""
   // };
 
   const [inputText, setInputText] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [selected, setSelected] = useState("");
+  const [selectedAsin, setSelectedAsin] = useState("");
 
   const handleChange = (propertyValue) => {
-    // this.setState({ ...this.state, [propertyName]: propertyValue });
     setInputText(propertyValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // this.setState({ formSubmitted: true });
     setFormSubmitted(true);
   };
 
   const handleReset = () => {
-    // this.setState({ inputText: "", formSubmitted: false });
     setInputText("");
     setFormSubmitted(false);
   };
 
-  const changeSelected = (par) => {
-    // this.setState({ selected: par });
-    setSelected(par);
+  const changeAsin = (asin) => {
+    if (selectedAsin === asin) {
+      setSelectedAsin("");
+    } else {
+      setSelectedAsin(asin);
+    }
   };
 
   return (
@@ -61,10 +61,10 @@ const BookList = (props) => {
 
       <Row>
         <Col className="col-8">
-          {selected ? (
+          {selectedAsin ? (
             <CommentArea
               /* asin={this.state.book.asin} */
-              selected={selected}
+              asin={selectedAsin}
             />
           ) : (
             <Alert variant="warning">Selezionare una card</Alert>
@@ -73,11 +73,11 @@ const BookList = (props) => {
       </Row>
 
       <Row sm={2} lg={3}>
-        {!formSubmitted && props.books.map((book) => <SingleBook key={book.asin} book={book} selected={selected} changeSelected={changeSelected} />)}
+        {!formSubmitted && props.books.map((book) => <SingleBook key={book.asin} book={book} selectedAsin={selectedAsin} changeAsin={changeAsin} />)}
         {formSubmitted &&
           props.books
             .filter((book) => book.title.toLowerCase().includes(inputText.toLowerCase()))
-            .map((book) => <SingleBook key={book.asin} book={book} selected={selected} changeSelected={changeSelected} />)}
+            .map((book) => <SingleBook key={book.asin} book={book} selectedAsin={selectedAsin} changeAsin={changeAsin} />)}
       </Row>
     </Container>
   );

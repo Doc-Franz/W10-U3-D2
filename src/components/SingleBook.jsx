@@ -5,24 +5,18 @@ const SingleBook = (props) => {
     selected: false
   }; */
 
-  // const checkSelected = () => {
-  //   props.selected ? console.log("VEROOO") : console.log("FALSOOO");
-  // };
-
-  const { book } = props;
   return (
     <Col className="mb-3">
-      <Card className={book.selected === book.asin ? "border border-danger" : ""}>
+      <Card className={props.selectedAsin === props.book.asin ? "border border-danger" : ""}>
         <Card.Img
           variant="top"
-          src={book.img}
+          src={props.book.img}
           onClick={() => {
-            // checkSelected();
-            book.changeSelected(book.asin); /*  this.props.changeSelected(!this.state.selected); */
+            props.changeAsin(props.book.asin);
           }}
         />
         <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
+          <Card.Title>{props.book.title}</Card.Title>
           <Card.Text>Some quick example text to build on the card title and make up the bulk of the content.</Card.Text>
           <Button variant="success" className="pb-2">
             Buy it!
